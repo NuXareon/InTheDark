@@ -14,7 +14,11 @@ public class Trigger : MonoBehaviour
     {
         if (ObjectTrigger == null)
         {
-            Debug.LogAssertion("Null Object trigger for trigger " + transform.name);
+            ObjectTrigger = transform.parent.gameObject;
+            if (ObjectTrigger == null)
+            {
+                Debug.LogAssertion("Null Object trigger for trigger " + transform.name);
+            }
         }
     }
 
