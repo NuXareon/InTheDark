@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,7 +29,7 @@ public class MothController : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        flyAction = InputSystem.actions.FindAction("Fly");
+        flyAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,7 +47,7 @@ public class MothController : MonoBehaviour
 
     void UpdateCamera()
     {
-        // TODO maybe we should delay reading the input, since we can get big initial deltas whe pressing play, although on final builds it might not be an issue.
+        // TODO maybe we should delay reading the input, since we can get big initial deltas when pressing play, although on final builds it might not be an issue.
         // Read input
         Vector2 lookInput = lookAction.ReadValue<Vector2>();
         lookInput = lookInput * mouseSensitivity * Time.deltaTime;
