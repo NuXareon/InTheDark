@@ -5,6 +5,11 @@ public class Flicker : MonoBehaviour, ITriggerOverrideInterface
 {
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
+        return StartFlicker();
+    }
+
+    public bool StartFlicker()
+    {
         Light LightComponent = GetComponent<Light>();
         if (LightComponent != null)
         {
