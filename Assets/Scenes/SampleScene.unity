@@ -1410,6 +1410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: 4227288738759369416, guid: 910f4fb250fec564cae5ddce9ad810ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4674184526473395166, guid: 910f4fb250fec564cae5ddce9ad810ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
