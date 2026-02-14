@@ -1,0 +1,11 @@
+Model Information:
+* title:	Banded sphinx moth (Eumorpha fasciatus)
+* source:	https://sketchfab.com/3d-models/banded-sphinx-moth-eumorpha-fasciatus-d623ead5068f473cb610dbfbb535a45d
+* author:	butterflybliss (https://sketchfab.com/ZorDob)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Banded sphinx moth (Eumorpha fasciatus)" (https://sketchfab.com/3d-models/banded-sphinx-moth-eumorpha-fasciatus-d623ead5068f473cb610dbfbb535a45d) by butterflybliss (https://sketchfab.com/ZorDob) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
