@@ -5,7 +5,8 @@ public class MothController : MonoBehaviour
 {
     private CharacterController controller;
 
-    private float VerticalSpeed;
+    private float VerticalSpeed = 0f;
+    private Vector2 HorizontalMovement = new Vector2();
     private Vector2 CameraRotation = new Vector2();
 
     private InputAction moveAction;
@@ -14,6 +15,7 @@ public class MothController : MonoBehaviour
 
     public float flyingSpeed = 5f;
     public float groundedSpeed = 1f;
+    //public float movementDecay = 20f;
     public float maxAscendSpeed = 5f;
     public float maxFallSpeed = 2f;
     public float verticalAcceleration = 20f;
@@ -92,8 +94,37 @@ public class MothController : MonoBehaviour
             movement *= flyingSpeed;
         }
 
+        /* TODO investigate this
+        // Slow down behaviour
+        if (movementInput == Vector2.zero && HorizontalMovement.sqrMagnitude > 0f)
+        {
+            Vector2 Slowdown = HorizontalMovement.normalized * Time.deltaTime * movementDecay;
+            if (Slowdown.sqrMagnitude > HorizontalMovement.sqrMagnitude) 
+            {
+                movement = Vector3.zero;
+            }
+            else
+            {
+                movement = HorizontalMovement - Slowdown;
+            }
+            Debug.Log(HorizontalMovement);
+            Debug.Log(Slowdown);
+            Debug.Log(movement);
+        }
+        */
+        HorizontalMovement = movement;
+
         // Apply movement
         movement.y = VerticalSpeed;
         controller.Move(movement * Time.deltaTime);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Hittable HittableComponment = hit.transform.GetComponentInChildren<Hittable>();
+        if (HittableComponment)
+        {
+            HittableComponment.OnHit();
+        }
     }
 }
