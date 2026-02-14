@@ -8,10 +8,14 @@ public class MothController : MonoBehaviour
     private float VerticalSpeed = 0f;
     private Vector2 HorizontalMovement = new Vector2();
     private Vector2 CameraRotation = new Vector2();
+    private float InteractionCooldown = 0f;
 
     private InputAction moveAction;
     private InputAction flyAction;
     private InputAction lookAction;
+    private InputAction interactAction;
+
+    private GameObject GrabbedObject;
 
     public float flyingSpeed = 5f;
     public float groundedSpeed = 1f;
@@ -21,6 +25,8 @@ public class MothController : MonoBehaviour
     public float verticalAcceleration = 20f;
     public float gravity = 9.81f;
     public float mouseSensitivity = 10f;
+
+    public GameObject AttachPoint;
 
     private void Awake()
     {
@@ -33,6 +39,7 @@ public class MothController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         flyAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
+        interactAction = InputSystem.actions.FindAction("Interact");
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -45,6 +52,7 @@ public class MothController : MonoBehaviour
     {
         UpdateCamera();
         UpdateMovement();
+        UpdateGabbedItem();
     }
 
     void UpdateCamera()
@@ -119,6 +127,22 @@ public class MothController : MonoBehaviour
         controller.Move(movement * Time.deltaTime);
     }
 
+    void UpdateGabbedItem()
+    {
+        if (InteractionCooldown > 0f)
+        {
+            InteractionCooldown -= Time.deltaTime;
+            InteractionCooldown = Mathf.Max(0, InteractionCooldown);
+        }
+
+        bool bInteactionPressed = interactAction.IsPressed();
+        if (bInteactionPressed)
+        {
+            ReleaseObject();
+        }
+    }
+
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Hittable HittableComponment = hit.transform.GetComponentInChildren<Hittable>();
@@ -126,5 +150,70 @@ public class MothController : MonoBehaviour
         {
             HittableComponment.OnHit();
         }
+    }
+
+    public bool Grab(GameObject Object)
+    {
+        if (GrabbedObject != null)
+        {
+            return false;
+        }
+
+        if (InteractionCooldown > 0f)
+        {
+            return false;
+        }
+
+        Object.transform.SetParent(AttachPoint.transform);
+        Object.transform.localRotation = Quaternion.identity;
+        Object.transform.localPosition = Vector3.zero;
+        Rigidbody GrabbedRigidBody = Object.GetComponent<Rigidbody>();
+        if (GrabbedRigidBody != null)
+        {
+            GrabbedRigidBody.isKinematic = true;
+        }
+        Collider GrabbedCollider = Object.GetComponent<Collider>();
+        if (GrabbedCollider != null)
+        {
+            Object.transform.localPosition = new Vector3(0f, -GrabbedCollider.bounds.extents.y, 0f);
+            GrabbedCollider.enabled = false;
+        }
+        GrabbedObject = Object;
+        InteractionCooldown = 0.5f;
+        return true;
+    }
+
+    bool ReleaseObject()
+    {
+        // TODO we might need additional valid checks, i.e. not grounded
+        if (GrabbedObject == null)
+        {
+            return false;
+        }
+
+        if (InteractionCooldown > 0f)
+        {
+            return false;
+        }
+
+        GrabbedObject.transform.SetParent(null);
+        Rigidbody GrabbedRigidBody = GrabbedObject.GetComponent<Rigidbody>();
+        if (GrabbedRigidBody != null)
+        {
+            GrabbedRigidBody.isKinematic = false;
+        }
+        Collider GrabbedCollider = GrabbedObject.GetComponent<Collider>();
+        if (GrabbedCollider != null)
+        {
+            GrabbedCollider.enabled = true;
+        }
+        Interactable GrabbedInteract = GrabbedObject.GetComponentInChildren<Interactable>(true);
+        if (GrabbedInteract)
+        {
+            GrabbedInteract.gameObject.SetActive(true);
+        }
+        GrabbedObject = null;
+        InteractionCooldown = 0.5f;
+        return true;
     }
 }

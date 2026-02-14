@@ -46,7 +46,8 @@ public class Interactable : MonoBehaviour
 
             if (interactAction.IsPressed())
             {
-                TriggerObject(ObjectTrigger != null ? ObjectTrigger : transform.parent.gameObject);
+                Debug.Log("Interaction " + transform.name + " started");
+                TriggerObject(ObjectTrigger != null ? ObjectTrigger : transform.parent.gameObject, other.gameObject);
             }
         }
     }
@@ -59,11 +60,20 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    void TriggerObject(GameObject Object)
+    void TriggerObject(GameObject Object, GameObject Instigator)
     {
-        Object.SetActive(!Object.activeSelf);
+        bool InteractionSuccess = true;
+        ITriggerOverrideInterface InteractionOverride = Object.GetComponentInChildren<ITriggerOverrideInterface>();
+        if (InteractionOverride != null)
+        {
+            InteractionSuccess = InteractionOverride.OnInteraction(gameObject, Instigator);
+        }
+        else
+        {
+            Object.SetActive(!Object.activeSelf);
+        }
 
-        if (SingleTrigger)
+        if (InteractionSuccess && SingleTrigger)
         {
             gameObject.SetActive(false);
         }
