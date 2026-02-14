@@ -25,13 +25,13 @@ public class Trigger : MonoBehaviour
             if (ObjectFilter == other.gameObject)
             {
                 Debug.Log("Trigger " + transform.name + " entered by " + other.transform.name);
-                TriggerObject(ObjectTrigger);
+                TriggerObject(ObjectTrigger, other.gameObject);
             }
         }
         else if (other.CompareTag("Player"))
         {
             Debug.Log("Trigger " + transform.name + " entered by " + other.transform.name);
-            TriggerObject(ObjectTrigger);
+            TriggerObject(ObjectTrigger, other.gameObject);
         }
     }
 
@@ -51,11 +51,20 @@ public class Trigger : MonoBehaviour
         }
     }
     */
-    void TriggerObject(GameObject Object)
+    void TriggerObject(GameObject Object, GameObject Instigator)
     {
-        Object.SetActive(!Object.activeSelf);
+        bool InteractionSuccess = true;
+        ITriggerOverrideInterface InteractionOverride = Object.GetComponentInChildren<ITriggerOverrideInterface>();
+        if (InteractionOverride != null)
+        {
+            InteractionSuccess = InteractionOverride.OnInteraction(gameObject, Instigator);
+        }
+        else
+        {
+            Object.SetActive(!Object.activeSelf);
+        }
 
-        if (SingleTrigger)
+        if (InteractionSuccess && SingleTrigger)
         {
             gameObject.SetActive(false);
         }

@@ -13,17 +13,26 @@ public class Hittable : MonoBehaviour
   
     }
 
-    public void OnHit()
+    public void OnHit(GameObject Instigator)
     {
         Debug.Log("Hit " + transform.name);
-        TriggerObject(ObjectTrigger);
+        TriggerObject(ObjectTrigger, Instigator);
     }
 
-    void TriggerObject(GameObject Object)
+    void TriggerObject(GameObject Object, GameObject Instigator)
     {
-        Object.SetActive(!Object.activeSelf);
+        bool InteractionSuccess = true;
+        ITriggerOverrideInterface InteractionOverride = Object.GetComponentInChildren<ITriggerOverrideInterface>();
+        if (InteractionOverride != null)
+        {
+            InteractionSuccess = InteractionOverride.OnInteraction(gameObject, Instigator);
+        }
+        else
+        {
+            Object.SetActive(!Object.activeSelf);
+        }
 
-        if (SingleTrigger)
+        if (InteractionSuccess && SingleTrigger)
         {
             gameObject.SetActive(false);
         }

@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour
 {
     private InputAction interactAction;
     private TextMeshPro interactableInputText;
+    private float currentCooldown = 0f;
 
     public GameObject inputTextObject;
 
@@ -14,6 +15,8 @@ public class Interactable : MonoBehaviour
     public GameObject ObjectTrigger;
     [Tooltip("Deactivate trigger after it has been triggered.")]
     public bool SingleTrigger = true;
+    [Tooltip("Minimum time between interactions. Only used if not Single Trigger.")]
+    public float Cooldown = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +29,11 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentCooldown > 0f)
+        {
+            currentCooldown -= Time.deltaTime;
+            currentCooldown = Mathf.Max(currentCooldown, 0f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +51,7 @@ public class Interactable : MonoBehaviour
             Vector3 Lookat = other.transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(Lookat, Vector3.up);
 
-            if (interactAction.IsPressed())
+            if (interactAction.IsPressed() && currentCooldown == 0f)
             {
                 Debug.Log("Interaction " + transform.name + " started");
                 TriggerObject(ObjectTrigger != null ? ObjectTrigger : transform.parent.gameObject, other.gameObject);
@@ -73,9 +80,16 @@ public class Interactable : MonoBehaviour
             Object.SetActive(!Object.activeSelf);
         }
 
-        if (InteractionSuccess && SingleTrigger)
+        if (InteractionSuccess)
         {
-            gameObject.SetActive(false);
+            if (SingleTrigger)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                currentCooldown = Cooldown;
+            }
         }
     }
 }

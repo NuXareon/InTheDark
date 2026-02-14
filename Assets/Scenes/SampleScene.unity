@@ -984,13 +984,14 @@ GameObject:
   - component: {fileID: 1052365766}
   - component: {fileID: 1052365765}
   - component: {fileID: 1052365764}
+  - component: {fileID: 1052365767}
   m_Layer: 0
   m_Name: Point Light (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1052365764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,7 +1028,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052365763}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.05474496, g: 1, b: 0, a: 1}
@@ -1100,6 +1101,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1052365767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052365763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac5046d91e9c2d40a93247c677dda48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flicker
 --- !u!1 &1166351537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,13 +1124,14 @@ GameObject:
   - component: {fileID: 1166351540}
   - component: {fileID: 1166351539}
   - component: {fileID: 1166351538}
+  - component: {fileID: 1166351541}
   m_Layer: 0
   m_Name: Point Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1166351538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1168,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166351537}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0.90868187, a: 1}
@@ -1227,6 +1241,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166351541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166351537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac5046d91e9c2d40a93247c677dda48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flicker
 --- !u!1 &1225688667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,13 +1264,14 @@ GameObject:
   - component: {fileID: 1225688670}
   - component: {fileID: 1225688669}
   - component: {fileID: 1225688668}
+  - component: {fileID: 1225688671}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1225688668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,6 +1381,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225688671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225688667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac5046d91e9c2d40a93247c677dda48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flicker
 --- !u!4 &1309852404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4674184526473395166, guid: 910f4fb250fec564cae5ddce9ad810ba, type: 3}
@@ -1608,13 +1647,14 @@ GameObject:
   - component: {fileID: 1452754477}
   - component: {fileID: 1452754476}
   - component: {fileID: 1452754475}
+  - component: {fileID: 1452754478}
   m_Layer: 0
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1452754475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,7 +1691,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452754474}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0, g: 0.15639734, b: 1, a: 1}
@@ -1724,6 +1764,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1452754478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452754474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac5046d91e9c2d40a93247c677dda48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flicker
 --- !u!1 &1480617903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,7 +2063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   inputTextObject: {fileID: 1358602752}
   ObjectTrigger: {fileID: 1166351537}
-  SingleTrigger: 1
+  SingleTrigger: 0
+  Cooldown: 1
 --- !u!135 &1652767286
 SphereCollider:
   m_ObjectHideFlags: 0

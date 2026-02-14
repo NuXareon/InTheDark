@@ -148,7 +148,7 @@ public class MothController : MonoBehaviour
         Hittable HittableComponment = hit.transform.GetComponentInChildren<Hittable>();
         if (HittableComponment)
         {
-            HittableComponment.OnHit();
+            HittableComponment.OnHit(gameObject);
         }
     }
 
