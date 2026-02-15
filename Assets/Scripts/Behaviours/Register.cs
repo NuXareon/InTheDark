@@ -5,6 +5,7 @@ public class Register : MonoBehaviour, ITriggerOverrideInterface
     public GameObject CoinInteract;
     public Vector3 OpenMovement = new Vector3(0f, 0f, 2f);
     public float Duration = 1f;
+    public GameObject CashSound;
 
     private bool isMoving = false;
     private float moveDuration = 0f;
@@ -38,6 +39,7 @@ public class Register : MonoBehaviour, ITriggerOverrideInterface
 
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
+        CashSound.GetComponent<AudioSource>().Play();
         isMoving = true;
         return true;
     }
