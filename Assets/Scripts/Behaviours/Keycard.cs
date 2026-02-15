@@ -4,6 +4,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
 {
     public GameObject PCScreenActivate;
     public GameObject PCScreenDeactivate;
+    public GameObject DoorTrigger;
     public Transform KeycardReaderSlot;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +30,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
 
         PCScreenDeactivate.SetActive(false);
         PCScreenActivate.SetActive(true);
+        DoorTrigger.SetActive(true);
 
         return true;
     }
