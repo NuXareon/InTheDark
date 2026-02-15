@@ -11,6 +11,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
     public GameObject KeyboardTrigger;
     public GameObject DoorDeactivateText;
     public GameObject DoorActivateText;
+    public GameObject Beep;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,17 +21,22 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
         // Insert keycard into slot
-        OtherObject.transform.parent.localPosition = KeycardReaderSlot.position;
-        OtherObject.transform.parent.localRotation = Quaternion.Euler(90f, 0f, 0f);
-        Rigidbody OtherObjectRigidBody = OtherObject.transform.parent.GetComponent<Rigidbody>();
+        OtherObject.transform.localPosition = KeycardReaderSlot.position;
+        OtherObject.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        Rigidbody OtherObjectRigidBody = OtherObject.transform.GetComponent<Rigidbody>();
         if (OtherObjectRigidBody != null)
         {
             OtherObjectRigidBody.isKinematic = true;
         }
-        Interactable OtherObjectInteractable = OtherObject.transform.parent.GetComponentInChildren<Interactable>();
+        Interactable OtherObjectInteractable = OtherObject.transform.GetComponentInChildren<Interactable>();
         if (OtherObjectInteractable != null)
         {
             OtherObjectInteractable.enabled = false;
+        }
+        Grabbable OtherObjectGrabbable = OtherObject.transform.GetComponentInChildren<Grabbable>();
+        if (OtherObjectGrabbable != null)
+        {
+            OtherObjectGrabbable.enabled = false;
         }
 
         KeyboardTrigger.SetActive(false);
@@ -40,6 +46,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
         DoorDeactivateText.SetActive(false);
         DoorActivateText.SetActive(true);
         DoorTrigger.SetActive(true);
+        Beep.GetComponent<AudioSource>().Play();
 
         return true;
     }

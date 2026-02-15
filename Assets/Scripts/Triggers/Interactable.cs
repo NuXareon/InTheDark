@@ -38,7 +38,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && enabled)
         {
             inputTextObject.SetActive(true);
         }
@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && enabled)
         {
             transform.LookAt(other.transform);
             interactableInputText.transform.LookAt(Camera.main.transform);
