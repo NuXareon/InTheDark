@@ -65,7 +65,6 @@ public class MothController : MonoBehaviour
 
     void UpdateCamera()
     {
-        // TODO maybe we should delay reading the input, since we can get big initial deltas when pressing play, although on final builds it might not be an issue.
         // Read input
         Vector2 lookInput = lookAction.ReadValue<Vector2>();
         lookInput = lookInput * mouseSensitivity * Time.deltaTime;

@@ -31,7 +31,7 @@ public class Intro : MonoBehaviour
         mothController = Moth.GetComponent<MothController>();
         FadeImage = Fade.GetComponent<Image>();
         FadeColor = FadeImage.color;
-        PressToStartText = GetComponent<TextMeshProUGUI>();
+        PressToStartText = PressToStart.GetComponent<TextMeshProUGUI>();
         PressToStartText.text = "Press " + flyAction.bindings[0].ToDisplayString() + "/(" + flyAction.bindings[1].ToDisplayString() + ") to Start";
 
         mothController.enabled = false;

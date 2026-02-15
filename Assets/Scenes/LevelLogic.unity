@@ -10815,6 +10815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moth
       objectReference: {fileID: 0}
+    - target: {fileID: 4155332812002033435, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: mouseSensitivity
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7602056109098948847, guid: e2857a508d3c81f408af3345df929578, type: 3}
       propertyPath: far clip plane
       value: 500
@@ -13960,7 +13964,7 @@ MonoBehaviour:
   Controls: {fileID: 437520151}
   Fade: {fileID: 1438427287}
   PressToStart: {fileID: 543818731}
-  FadeTime: 1
+  FadeTime: 1.5
 --- !u!4 &2131666195
 Transform:
   m_ObjectHideFlags: 0
