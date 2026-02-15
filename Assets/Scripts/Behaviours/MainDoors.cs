@@ -4,6 +4,7 @@ public class MainDoors : MonoBehaviour, ITriggerOverrideInterface
 {
     public GameObject LeftDoor;
     public GameObject RightDoor;
+    public GameObject DoorAudio;
     public float slideDuration = 1f;
     public Vector3 slideAmount = new Vector3(5f, 0f, 0f);
 
@@ -44,6 +45,7 @@ public class MainDoors : MonoBehaviour, ITriggerOverrideInterface
 
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
+        DoorAudio.GetComponent<AudioSource>().Play();
         bSliding = true;
         return true;
     }
