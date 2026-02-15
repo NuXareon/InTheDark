@@ -12,6 +12,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
     public GameObject DoorDeactivateText;
     public GameObject DoorActivateText;
     public GameObject Beep;
+    public GameObject ScreenLight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,6 +48,7 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
         DoorActivateText.SetActive(true);
         DoorTrigger.SetActive(true);
         Beep.GetComponent<AudioSource>().Play();
+        ScreenLight.GetComponent<Light>().enabled = true;
 
         return true;
     }
