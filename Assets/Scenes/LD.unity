@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: df79b0aaef359a24cb3499237f73d2fa, type: 2}
+  m_LightingDataAsset: {fileID: 112000002, guid: df79b0aaef359a24cb3499237f73d2fa, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 6ad228a8e8ee28b448561d80a712b13d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -36811,6 +36811,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 712906594421991798, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 712906594421991798, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.595
+      objectReference: {fileID: 0}
+    - target: {fileID: 712906594421991798, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.272
+      objectReference: {fileID: 0}
     - target: {fileID: 1345030817016606476, guid: e2857a508d3c81f408af3345df929578, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -36867,9 +36879,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2897655583087112467, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: m_Height
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897655583087112467, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: m_Radius
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3065788525873189609, guid: e2857a508d3c81f408af3345df929578, type: 3}
       propertyPath: m_Name
       value: Moth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602056109098948847, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: far clip plane
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602056109098948847, guid: e2857a508d3c81f408af3345df929578, type: 3}
+      propertyPath: near clip plane
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
