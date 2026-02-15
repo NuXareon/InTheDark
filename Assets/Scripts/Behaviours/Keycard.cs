@@ -20,19 +20,20 @@ public class Keycard : MonoBehaviour, ITriggerOverrideInterface
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
         // Insert keycard into slot
-        OtherObject.transform.localPosition = KeycardReaderSlot.position;
-        OtherObject.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-        Rigidbody OtherObjectRigidBody = OtherObject.GetComponent<Rigidbody>();
+        OtherObject.transform.parent.localPosition = KeycardReaderSlot.position;
+        OtherObject.transform.parent.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        Rigidbody OtherObjectRigidBody = OtherObject.transform.parent.GetComponent<Rigidbody>();
         if (OtherObjectRigidBody != null)
         {
             OtherObjectRigidBody.isKinematic = true;
         }
-        Interactable OtherObjectInteractable = OtherObject.GetComponentInChildren<Interactable>();
+        Interactable OtherObjectInteractable = OtherObject.transform.parent.GetComponentInChildren<Interactable>();
         if (OtherObjectInteractable != null)
         {
             OtherObjectInteractable.enabled = false;
         }
 
+        KeyboardTrigger.SetActive(false);
         PCScreenDeactivate.SetActive(false);
         PCScreenActivate.SetActive(true);
         Screen.GetComponent<Renderer>().material = ScreenOnMaterial;
