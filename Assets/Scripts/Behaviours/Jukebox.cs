@@ -8,6 +8,9 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
     public Transform CoinSlot1;
     public Transform CoinSlot2;
     public GameObject JukeboxLight;
+    public GameObject JukeboxMusic;
+    public GameObject JukeboxStartUpSound;
+    public GameObject JukeboxCoinSound;
 
     public Material JukeboxEmissive;
     public GameObject JukeboxEmissiveObject;
@@ -42,12 +45,13 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
         {
             OtherObjectInteractable.enabled = false;
         }
+        JukeboxCoinSound.GetComponent<AudioSource>().Play();
 
         // Increase coins and trigger logic if ready
         Coins++;
         if (Coins == 2) 
         {
-            StartCoroutine(StartJukeboxDelayed(0.5f));
+            StartCoroutine(StartJukeboxDelayed(7f));
         }
 
         Debug.Log("Coins in jukebox: " + Coins);
@@ -57,6 +61,7 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
 
     void StartJukebox()
     {
+        JukeboxMusic.GetComponent<AudioSource>().Play();
         JukeboxEmissiveObject.GetComponent<Renderer>().material = JukeboxEmissive;
         StartCoroutine(StartLightsDelayed(1f));
     }
@@ -76,6 +81,7 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
 
     IEnumerator StartJukeboxDelayed(float time)
     {
+        JukeboxStartUpSound.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(time);
         StartJukebox();
     }
