@@ -150,6 +150,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1935783946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &34637231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6661221911908235587, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
+  m_PrefabInstance: {fileID: 650081464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &63209058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1652,6 +1657,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jukebox
       objectReference: {fileID: 0}
+    - target: {fileID: -2554845735342608307, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2554845735342608307, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 585212d3022eb53498d7bccd0f68a785, type: 2}
     - target: {fileID: 2774220344278030320, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
@@ -1706,6 +1719,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289474294906930668, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2643,7 +2660,7 @@ Transform:
   m_GameObject: {fileID: 1173487166}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.249, y: 1.03, z: 0.04}
+  m_LocalPosition: {x: 0.14, y: 1.03, z: 0.022}
   m_LocalScale: {x: 2, y: 5, z: 3.3333333}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2937,7 +2954,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 1, g: 0.78469765, b: 0.47358483, a: 1}
+  m_Color: {r: 0.81960785, g: 1, b: 0.9002985, a: 1}
   m_Intensity: 1
   m_Range: 5
   m_SpotAngle: 30
@@ -4299,6 +4316,8 @@ MonoBehaviour:
   CoinSlot1: {fileID: 736005472}
   CoinSlot2: {fileID: 6239040}
   JukeboxLight: {fileID: 1586100265}
+  JukeboxEmissive: {fileID: 17800888453307929, guid: 0db922a6e1a94164db57a3e08b7f4d5c, type: 3}
+  JukeboxEmissiveObject: {fileID: 34637231}
 --- !u!4 &2069348558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5926274504966683189, guid: d9236716fb17dc34dabbf928d2b6606c, type: 3}

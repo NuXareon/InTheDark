@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
 {
@@ -7,6 +8,9 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
     public Transform CoinSlot1;
     public Transform CoinSlot2;
     public GameObject JukeboxLight;
+
+    public Material JukeboxEmissive;
+    public GameObject JukeboxEmissiveObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +47,7 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
         Coins++;
         if (Coins == 2) 
         {
-            StartJukebox();
+            StartCoroutine(StartJukeboxDelayed(0.5f));
         }
 
         Debug.Log("Coins in jukebox: " + Coins);
@@ -52,6 +56,12 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
     }
 
     void StartJukebox()
+    {
+        JukeboxEmissiveObject.GetComponent<Renderer>().material = JukeboxEmissive;
+        StartCoroutine(StartLightsDelayed(1f));
+    }
+
+    void StartLights()
     {
         Flicker LightFlicker = JukeboxLight.GetComponent<Flicker>();
         if (LightFlicker != null)
@@ -62,5 +72,17 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
         {
             JukeboxLight.SetActive(true);
         }
+    }
+
+    IEnumerator StartJukeboxDelayed(float time)
+    {
+        yield return new WaitForSeconds(time);
+        StartJukebox();
+    }
+
+    IEnumerator StartLightsDelayed(float time)
+    {
+        yield return new WaitForSeconds(time);
+        StartLights();
     }
 }
