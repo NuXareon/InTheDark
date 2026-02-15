@@ -48,9 +48,9 @@ public class Interactable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Vector3 Lookat = other.transform.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(Lookat, Vector3.up);
-
+            transform.LookAt(other.transform);
+            interactableInputText.transform.LookAt(Camera.main.transform);
+            interactableInputText.transform.Rotate(Vector3.up - new Vector3(0, 180, 0));
             if (interactAction.IsPressed() && currentCooldown == 0f)
             {
                 Debug.Log("Interaction " + transform.name + " started");
