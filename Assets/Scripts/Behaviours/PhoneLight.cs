@@ -4,6 +4,7 @@ using System.Collections;
 public class PhoneLight : MonoBehaviour, ITriggerOverrideInterface
 {
     public float delay = 0.5f;
+    public GameObject Audio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,7 @@ public class PhoneLight : MonoBehaviour, ITriggerOverrideInterface
     {
         yield return new WaitForSeconds(time);
         GetComponent<Light>().enabled = true;
+        Audio.GetComponent<AudioSource>().Play();
     }
 
 }

@@ -47,5 +47,18 @@ public class Flicker : MonoBehaviour, ITriggerOverrideInterface
         wait = Random.Range(0.01f, 0.03f);
         yield return new WaitForSeconds(wait);
         light.enabled = !light.enabled;
+
+        AudioSource AudioComponent = GetComponent<AudioSource>();
+        if (AudioComponent != null)
+        {
+            if (!light.enabled)
+            {
+                AudioComponent.Stop();
+            }
+            else
+            {
+                AudioComponent.Play();
+            }    
+        }
     }
 }
