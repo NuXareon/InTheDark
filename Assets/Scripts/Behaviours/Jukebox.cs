@@ -14,11 +14,6 @@ public class Jukebox : MonoBehaviour, ITriggerOverrideInterface
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public bool OnInteraction(GameObject Trigger, GameObject OtherObject)
     {
         Debug.Log("Coin inserted in jukebox");
