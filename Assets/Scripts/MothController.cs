@@ -17,6 +17,8 @@ public class MothController : MonoBehaviour
 
     private GameObject GrabbedObject;
 
+    private float TimeToStart = 0.5f;
+
     public float flyingSpeed = 5f;
     public float groundedSpeed = 1f;
     //public float movementDecay = 20f;
@@ -50,6 +52,12 @@ public class MothController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeToStart > 0f)
+        {
+            // Look the input for a bit to avoid accidental camera movement while game is loading
+            TimeToStart -= Time.deltaTime;
+            return;
+        }
         UpdateCamera();
         UpdateMovement();
         UpdateGabbedItem();
