@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,8 @@ public class MothController : MonoBehaviour
     private InputAction interactAction;
 
     private GameObject GrabbedObject;
+    private GameObject DropUIText;
+    private TextMeshProUGUI PromptText;
 
     private float TimeToStart = 0.5f;
 
@@ -47,6 +50,9 @@ public class MothController : MonoBehaviour
         Cursor.visible = false;
 
         CameraRotation = transform.localEulerAngles;
+
+        DropUIText = GameObject.FindWithTag("InteractPrompt");
+        PromptText = DropUIText.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -187,6 +193,10 @@ public class MothController : MonoBehaviour
         }
         GrabbedObject = Object;
         InteractionCooldown = 0.5f;
+
+        PromptText.text = interactAction.bindings[0].ToDisplayString() + "/(" + interactAction.bindings[1].ToDisplayString() + ") - Drop";
+        PromptText.enabled = true;
+
         return true;
     }
 
@@ -221,6 +231,14 @@ public class MothController : MonoBehaviour
         }
         GrabbedObject = null;
         InteractionCooldown = 0.5f;
+
+        PromptText.enabled = false;
+
         return true;
+    }
+
+    public bool IsGrabbing()
+    {
+        return GrabbedObject != null;
     }
 }

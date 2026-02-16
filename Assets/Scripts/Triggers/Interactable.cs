@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
@@ -8,6 +9,9 @@ public class Interactable : MonoBehaviour
     private InputAction interactAction;
     private TextMeshPro interactableInputText;
     private float currentCooldown = 0f;
+    private GameObject InteractUIPrompt;
+    private TextMeshProUGUI PromptText;
+    private bool SetUIPrompt = false;
 
     public GameObject inputTextObject;
 
@@ -24,6 +28,9 @@ public class Interactable : MonoBehaviour
         interactAction = InputSystem.actions.FindAction("Interact");
         interactableInputText = inputTextObject.GetComponent<TextMeshPro>();
         interactableInputText.text = interactAction.bindings[0].ToDisplayString() + "/(" + interactAction.bindings[1].ToDisplayString() + ")";
+
+        InteractUIPrompt = GameObject.FindWithTag("InteractPrompt");
+        PromptText = InteractUIPrompt.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -36,11 +43,30 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        if (SetUIPrompt)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            MothController Controller = player.GetComponent<MothController>();
+            if (!Controller.IsGrabbing())
+            {
+                PromptText.enabled = false;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && enabled)
         {
-            inputTextObject.SetActive(true);
+            if (!PromptText.enabled)
+            {
+                PromptText.text = interactAction.bindings[0].ToDisplayString() + "/(" + interactAction.bindings[1].ToDisplayString() + ") - Interact";
+                PromptText.enabled = true;
+                SetUIPrompt = true;
+            }
+            //inputTextObject.SetActive(true);
         }
     }
 
@@ -53,8 +79,12 @@ public class Interactable : MonoBehaviour
             interactableInputText.transform.Rotate(Vector3.up - new Vector3(0, 180, 0));
             if (interactAction.IsPressed() && currentCooldown == 0f)
             {
-                Debug.Log("Interaction " + transform.name + " started");
-                TriggerObject(ObjectTrigger != null ? ObjectTrigger : transform.parent.gameObject, other.gameObject);
+                MothController Controller = other.GetComponent<MothController>();
+                if (!Controller.IsGrabbing())
+                {
+                    Debug.Log("Interaction " + transform.name + " started");
+                    TriggerObject(ObjectTrigger != null ? ObjectTrigger : transform.parent.gameObject, other.gameObject);
+                }
             }
         }
     }
@@ -63,7 +93,14 @@ public class Interactable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            inputTextObject.SetActive(false);
+            if (SetUIPrompt)
+            {
+                MothController Controller = other.GetComponent<MothController>();
+                if (!Controller.IsGrabbing())
+                {
+                    PromptText.enabled = false;
+                }
+            }
         }
     }
 
