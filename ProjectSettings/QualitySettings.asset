@@ -59,6 +59,7 @@ QualitySettings:
     terrainFadeLength: 5
     terrainMaxTrees: 50
     excludedTargetPlatforms:
+    - WebGL
     - Standalone
   - serializedVersion: 5
     name: PC
@@ -130,7 +131,7 @@ QualitySettings:
     Server: 0
     Stadia: 0
     Standalone: 1
-    WebGL: 0
+    WebGL: 1
     Windows Store Apps: 0
     XboxOne: 0
     iPhone: 0
